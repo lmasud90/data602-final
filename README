@@ -1,0 +1,5 @@
+To build image, run:
+    docker build -t crypto-trader:latest .
+
+To run image:
+    docker run -d -p 5000:5000 crypto-trader
