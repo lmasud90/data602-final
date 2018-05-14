@@ -6,10 +6,10 @@ import datetime
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 
-uri = 'mongodb://test:test@ds139929.mlab.com:39929/healthyfooddb' 
+uri = 'mongodb://test:test@ds139929.mlab.com:39929/healthyfooddb'
 
-def create_collection(name):
-    client = pymongo.MongoClient(uri)
+def create_collection(name, loc_uri=uri):
+    client = pymongo.MongoClient(loc_uri)
     db = client.get_default_database()
     db.create_collection(name)
     client.close()
@@ -21,9 +21,9 @@ def drop_collection(name):
     db.drop_collection(name)
     client.close()
     return
-    
-def insert_one(collection, document):
-    client = pymongo.MongoClient(uri)
+
+def insert_one(collection, document, loc_uri=uri):
+    client = pymongo.MongoClient(loc_uri)
     db = client.get_default_database()
 
     collection = db[collection]
@@ -32,8 +32,9 @@ def insert_one(collection, document):
     client.close()
     return
 
-def find(collection, params):
-    client = pymongo.MongoClient(uri)
+def find(collection, params, loc_uri=uri):
+    client = pymongo.MongoClient(loc_uri)
+    print(loc_uri)
     db = client.get_default_database()
 
     collection = db[collection]
@@ -53,7 +54,7 @@ def update_one(collection, currency, updates):
     return
 
 def get_menu(webname):
-    dataset = find("food", {'webname': webname})
+    dataset = find("food_info", {'webname': webname})
 
     menu = {}
     for item in dataset:
@@ -62,8 +63,11 @@ def get_menu(webname):
             menu[category_name].append(item)
         else:
             menu[category_name] = []
-    
     return menu
 
-def get_all(collection):
-    return find(collection, {})
+def get_all(collection, loc_uri=uri):
+    return find(collection, {}, loc_uri)
+
+def all_restaurants():
+    learn_uri = "mongodb://test:test@ds135690.mlab.com:35690/hfflearn"
+    return get_all("restaurants", learn_uri)

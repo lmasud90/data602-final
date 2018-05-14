@@ -16,7 +16,7 @@
                 padding-top: 56px;
                 }
             }
-        
+
         </style>
     </head>
     <title>{{name}} | Healthy Foods</title>
@@ -30,7 +30,7 @@
         <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 p-2"></div>
-            <div class="col-md-4 p-2">            
+            <div class="col-md-4 p-2">
                 <div>
                     <div class="input-group">
                         <input
@@ -53,22 +53,31 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
         <div class="col-md p-2">
             {% for category_menu in menu %}
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="2">
+                        <th>
                             {{category_menu['category']}}
                         </th>
+                        <th>Calories</th>
+                        <th>Total Fat</th>
+                        <th>Total Carbs</th>
+                        <th>Protein</th>
+                        <th>Sodium</th>
                     </tr>
                 </thead>
                 {% for item in category_menu['items'] %}
                 <tr>
                     <td>{{item['menu_item']}}</td>
                     <td>{{item['calories']}}</td>
+                    <td>{{item['total_fat']}}</td>
+                    <td>{{item['total_carb']}}</td>
+                    <td>{{item['protein']}}</td>
+                    <td>{{item['sodium']}}</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -76,7 +85,7 @@
             </div>
             </div>
         </div>
-        
+
         <!-- JS code -->
         <script>
             function filter() {

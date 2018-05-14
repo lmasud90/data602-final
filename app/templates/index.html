@@ -16,7 +16,7 @@
                 padding-top: 56px;
                 }
             }
-        
+
         </style>
     </head>
     <title>Healthy Foods</title>
@@ -36,17 +36,21 @@
                 </div>
             </div>
         </nav>
-      
+
         <!-- Page Content -->
         <div class="container-fluid">
             <div class="row"></div>
-            
+
             <div class="row">
             <div class="col-md p-2">
-            <table class="table table-bordered">
+            <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
+                        <th colspan="5"
+                            style="text-align: center;">
+                            Average Nutrition Information
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +61,11 @@
                                 {{restaurant['name']}}
                             </a>
                         </td>
-
+                        <td>Calories: {{restaurant['calories']}}</td>
+                        <td>Fat: {{restaurant['total_fat']}}</td>
+                        <td>Carb: {{restaurant['total_carb']}}</td>
+                        <td>Protein: {{restaurant['protein']}}</td>
+                        <td>Sodium: {{restaurant['sodium']}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -65,7 +73,7 @@
             </div>
             </div>
         </div>
-        
+
         <!-- JS code -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js">
         </script>
